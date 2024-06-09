@@ -91,6 +91,41 @@ string postfixToPrefix(string postfix) {
 	return stack.Delete();
 }
 
+string prefixToInfix(string prefix) {
+	int length = prefix.length();
+	Stack<string> stack(length);
+
+	for (int i = length - 1; i >= 0; i--) {
+		if (isAlphaNum(prefix[i])) {
+			stack.Add(string(1, prefix[i]));
+		} else {
+			string a = stack.Delete();
+			string b = stack.Delete();
+			stack.Add("(" + a + prefix[i] + b + ")");
+		}
+	}
+
+	return stack.Delete();
+}
+
+string prefixToPostfix(string prefix) {
+	int length = prefix.length();
+	Stack<string> stack(length);
+
+	for (int i = length - 1; i >= 0; i--) {
+		if (isAlphaNum(prefix[i])) {
+			stack.Add(string(1, prefix[i]));
+		} else {
+			string a = stack.Delete();
+			string b = stack.Delete();
+			stack.Add(a + b + prefix[i]);
+		}
+	}
+
+	return stack.Delete();
+}
+
+
 
 int main() {
 	cout << "1. Infix\n2. Prefix\n3. Postfix\n> ";
@@ -108,8 +143,8 @@ int main() {
 			break;
 		case 2:
 			cin>>prefix;
-			cout<<"postfix= ";//PreToPos(prefix);endl;
-			cout<<"infix= ";//PreToIn(prerfix);
+			cout<<"postfix= " << prefixToPostfix(prefix) << endl;
+			cout<<"infix= " << prefixToInfix(prefix) << endl;
 			break;
 		case 3:
 			cin>>postfix;
