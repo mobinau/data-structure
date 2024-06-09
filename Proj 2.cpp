@@ -9,13 +9,6 @@ bool isAlphaNum(char c) {
 	return false;
 }
 
-bool isOperator(char c) {
-	if (!isAlphaNum(c) && c != '(' && c != ')' && c != ' ')
-		return true;
-
-	return false;
-}
-
 template <typename T> class Stack {
 	private:
 		const static int defaultSize = 100;

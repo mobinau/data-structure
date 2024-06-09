@@ -32,18 +32,18 @@ class LinkList {
 	public:
 		Node* first;
 		Node* last;
+
 		LinkList() {
 			first = new Node();
 			first->link = first;
 			last = first;
 		}
 
-		Node* addNode(int data) {
+		void addNode(int data) {
 			Node* node = new Node(data);
 			last->link = node;
 			node->link = first;
 			last = node;
-			return node;
 		}
 
 		void deletePrimes() {
